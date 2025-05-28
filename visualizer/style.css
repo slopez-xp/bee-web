@@ -1,0 +1,692 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    overflow-x: hidden;
+}
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 110px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #ffecd1;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background-color: #f48c06;
+}
+
+.sidebar:hover {
+    width: 350px;
+    transition: 0.5s;
+}
+
+.logo {
+    height: 80px;
+    padding: 16px;
+}
+
+/* Estilos del menú */
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+/* Items del menú base */
+.menu-item {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Estado hover */
+.menu-item:hover:not(.active) {
+    background-color: #faa507c0;
+    cursor: pointer;
+}
+
+/* Estado activo - IMPORTANTE */
+.menu-item.active {
+    background-color: #faa307!important;
+    border-left: 3px solid #fff;
+    pointer-events: none;
+}
+
+/* Texto e iconos en estado activo */
+.menu-item.active a,
+.menu-item.active i,
+.menu-item.active span {
+    color: white !important;
+}
+
+/* Enlaces del menú */
+.menu a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a i {
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+/* Animación del texto (si usas sidebar colapsable) */
+.menu a span {
+    opacity: 0;
+    transform: translateX(-10px);
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.sidebar:hover .menu a span {
+    opacity: 1;
+    width: auto;
+    transform: translateX(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.1s;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* main body section */
+.main--content {
+    position: relative;
+    background: #ffecd1;
+    width: 100%;
+    padding: 1rem;
+    flex-grow: 1;
+    overflow-x: hidden;
+}
+
+.header--wrapper img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header--wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header--title {
+    color: #f48c06;
+}
+
+.user--info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search--box {
+    background: #f5ebe0;
+    width: 80%;
+    justify-content: space-between;
+    border-radius: 15px;
+    color: rgb(113, 99, 186, 255);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+}
+
+.search--box input {
+    background: transparent;
+    width: 100%;
+    padding: 10px;
+}
+
+.search--box i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5 ease-out;
+}
+
+.search--box i:hover {
+    transform: scale(1.3);
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+  display: flex; 
+  opacity: 1;
+}
+
+.popup-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+}
+
+.close-popup {
+    cursor: pointer;
+}
+
+/* Table style */
+.styled-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden; 
+    border-radius: 15px; 
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    width: 100%;
+    border: 1px solid #ffecd1;
+    text-align: center;
+    
+}
+
+.styled-table thead tr {
+    background-color: #f48c06;
+    color: #fff;
+    text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #ffecd1;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #ffecd1;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Dynamic container */
+.tabular--wrapper {
+    background: white;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 2rem; 
+}
+
+/* Filter pop up style */
+.filter-popup {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  padding: 10px;
+  z-index: 1000;
+}
+.hidden { 
+    display: none; 
+}
+.filter-options { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; }
+.filter-buttons { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 10px; 
+}
+.filter-buttons button { 
+    padding: 6px 12px; 
+    cursor: pointer; 
+}
+
+/* Dual range slider */
+#filter-popup {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  max-width: 300px;
+}
+
+#filter-popup.hidden {
+  display: none;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-btn.primary {
+  background: #f48c06;
+  color: white;
+}
+
+.filter-btn.primary:hover {
+  background: #e07c00;
+}
+
+#numeric-slider{
+  height: 10px;
+  width: 100%;
+}
+#numeric-slider .noUi-handle{
+    height: 20px;
+    width: 18px;
+    top: -5px;
+    right: -9px;
+}
+
+#numeric-slider .noUi-connect{
+    background: #faa307;
+}
+#numeric-slider .noUi-tooltip {
+  display: none !important;
+}
+
+.range-values {
+  text-align: center;
+  font-size: 14px;
+  margin: 10px 0;
+  color: #555;
+}
+
+.text-filter {
+  margin-right: 8px;
+}
+
+/* Dashboard style */
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Dos columnas */
+  gap: 20px;
+  height: fit-content;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 300px;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .dashboard-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Especifica dimensiones para el canvas */
+
+.health-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    width: 100%; /* Quitar max-width para que ocupe todo el ancho disponible */
+    margin: 0; /* Quitar márgenes para que no se salga */
+    height: 500px; /* Altura fija específica */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Evitar que el contenido se salga */
+}
+
+.health-title {
+  color: #2b2d42;
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.health-title:after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #f48c06;
+  margin: 12px auto 0;
+}
+
+.health-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 180px;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.healthy {
+  background: #f8f9fa;
+  border-top: 4px solid #4CAF50;
+}
+
+.unhealthy {
+  background: #f8f9fa;
+  border-top: 4px solid #F44336;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.healthy .stat-value {
+  color: #4CAF50;
+}
+
+.unhealthy .stat-value {
+  color: #F44336;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 8px;
+}
+
+.stat-percent {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.health-visual {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1; /* Ocupar espacio restante */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-dashboard {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  max-width: none;
+  margin: 0 auto;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.weather-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.weather-title {
+  color: #2b2d42;
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.time-range {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.optimized-chart {
+    height: 300px !important; /* Altura reducida */
+    margin: -10px -15px; /* Ajuste de márgenes */
+}
+
+/* Contenedor principal */
+.heatmap-wrapper {
+    display: flex;
+    gap: 0; /* Sin gap para que ocupe todo el ancho */
+    align-items: stretch; /* Estirar verticalmente */
+    width: 100%; /* Asegurar que ocupe todo el ancho */
+    height: 100%; /* Ocupar toda la altura disponible */
+}
+
+/* Canvas del heatmap */
+#heatmapChart {
+    width: 100% !important; /* Ocupar todo el ancho disponible */
+    height: 100% !important; /* Ocupar toda la altura disponible */
+    max-width: none !important;
+    max-height: none !important;
+}
+
+/* Leyenda de temperatura */
+.heatmap-legend {
+    display: none !important;
+}
+
+.legend-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.legend-gradient {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+}
+
+.legend-gradient span {
+    padding: 8px;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+/* Cabecera con filtros */
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-shrink: 0; /* No se encoja */
+}
+
+/* Layout principal */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr; /* Dos columnas de igual ancho */
+    gap: 30px;
+    align-items: start;
+}
+
+.dashboard-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: fit-content;
+}
+
+/* Ajustes específicos para los contenedores */
+.health-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    width: 100%; /* Quitar max-width para que ocupe todo el ancho disponible */
+    margin: 0; /* Quitar márgenes para que no se salga */
+    height: 720px; /* Altura fija específica */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Evitar que el contenido se salga */
+}
+
+.weather-chart-container,
+.weather-patterns {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    height: 240px; /* Altura fija - la mitad del health-summary menos gap */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajustes responsive */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .health-summary {
+        height: auto; /* En móvil, altura automática */
+        min-height: 400px;
+    }
+    
+    .weather-chart-container,
+    .weather-patterns {
+        height: 300px; /* Más altura en móvil */
+    }
+}
+
+/* Hacer que el canvas del pie chart ocupe el espacio restante */
+.health-visual {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1; /* Ocupar espacio restante */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+/* Contenedores de gráficos meteorológicos - altura fija igual */
+.weather-chart-container,
+.weather-patterns {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    height: 240px; /* Altura fija - la mitad del health-summary menos gap */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajustes para los gráficos */
+.chart-wrapper,
+.heatmap-wrapper {
+    flex: 1; /* Ocupar todo el espacio restante */
+    position: relative;
+    min-height: 0; /* Importante para flex children */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.legend-gradient span {
+    display: block;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+#weatherChartContainer {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+}
+
+#weatherChart,
+#heatmapChart {
+    min-width: 800px;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.weather-chart-container {
+    overflow: hidden; /* ¡CRÍTICO! */
+    height: 400px; /* Altura fija */
+}
+
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 50px); /* Resto espacio del header */
+    margin-top: 10px;
+}
+
+#pieChart {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+}
