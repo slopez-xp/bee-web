@@ -1,4 +1,8 @@
-### Bee web 🐝
+# Bee web 🐝
+## To Do:
+- [ ] Grant the admin the abilty to edit or delete data
+- [ ] Upload website to Github
+## Documentation
 The user must enter their credentials to gain access to both the database and various permissions. You must use Username and password. The existing user is Profe and Profe, respectively. 
 
 ![Login](/assets/login.png)
