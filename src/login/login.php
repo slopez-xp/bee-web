@@ -18,7 +18,7 @@
             $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['role'];
             
-            header("Location: http://localhost/bee_web/visualizer/welcome.php");
+            header("Location: http://localhost/bee_web/src/visualizer/welcome.php");
             exit();
         } else {
             echo '<script>

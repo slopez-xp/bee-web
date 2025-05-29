@@ -3,17 +3,17 @@ session_start();
 
 // 1. Verificar que el usuario esté logueado
 if (!isset($_SESSION['user_id'])) {
-    die("Error: Debes iniciar sesión primero. <a href='../index.php'>Login</a>");
+    die("Error: Debes iniciar sesión primero. <a href='../login/index.php'>Login</a>");
 }
 
 // 2. Configuración de conexión según el rol
-require_once("connection.php");
+require_once("../login/connection.php");
 
 // 3. Mostrar información del usuario actual
-echo "<div style='padding: 10px; background: #f0f0f0; margin-bottom: 20px;'>";
+echo "<div style='padding: 10px; background: #f0f0f0; margin-bottom: 20px; border-radius: 15px;'>";
 echo "Usuario: <strong>" . htmlspecialchars($_SESSION['username']) . "</strong> | ";
 echo "Rol: <strong>" . ($_SESSION['role'] === 'admin' ? 'Administrador' : 'Profesor') . "</strong>";
-echo " <small>(<a href='logout.php'>Cerrar sesión</a>)</small>";
+//echo " <small>(<a href='logout.php'>Cerrar sesión</a>)</small>";
 echo "</div>";
 
 // 4. Conexión a la base de datos según privilegios
