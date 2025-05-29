@@ -24,4 +24,4 @@ In each table, the headers can be clicked to display a pop-up filter that will a
 
 ![Table](/assets/tables.png)
 
-Note that filters can be cleared with the red button at the top right. Filters can be set up to provide a customised search without using SQL queries.g
+Note that filters can be cleared with the red button at the top right. Filters can be set up to provide a customised search without using SQL queries.
