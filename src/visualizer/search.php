@@ -11,8 +11,8 @@ require_once("../login/connection.php");
 
 // 3. Mostrar información del usuario actual
 echo "<div style='padding: 10px; background: #f0f0f0; margin-bottom: 20px; border-radius: 15px;'>";
-echo "Usuario: <strong>" . htmlspecialchars($_SESSION['username']) . "</strong> | ";
-echo "Rol: <strong>" . ($_SESSION['role'] === 'admin' ? 'Administrador' : 'Profesor') . "</strong>";
+echo "User: <strong>" . htmlspecialchars($_SESSION['username']) . "</strong> | ";
+echo "Role: <strong>" . ($_SESSION['role'] === 'admin' ? 'Administrator' : 'Professor') . "</strong>";
 //echo " <small>(<a href='logout.php'>Cerrar sesión</a>)</small>";
 echo "</div>";
 
